@@ -25,6 +25,7 @@ if (isset($_COOKIE['bd_create_success']) AND $_COOKIE['bd_create_success']!=''){
 echo   $flash;
 echo '<h2>Admin-panel</h2>';
 echo '<div><a href="/admin_create.php"><button>Add new</button></a></div>';
+echo '<div><a href="/index.php"><button>Main Page</button></a></div>';
 $out = '<table>';
 $out .='<tr><th>ID</th><th>Title</th><th>Description min</th><th>Image</th></tr>';
 for ($i=0; $i < count($data); $i++){
@@ -36,4 +37,3 @@ echo $out;
 
 // var_dump($data);
 ?>
-<input type='hidden' name='del_id' value='{$data[$i]['id']}'>

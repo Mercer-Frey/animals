@@ -39,9 +39,17 @@ function selectMain($conn){
     } 
     return $a;
 }
-//нумерация страниц
+
+//нумерация страниц главной
 function paginationCount($conn){
     $sql = "SELECT * FROM info";
+    $result = mysqli_query($conn, $sql);
+    $result = mysqli_num_rows($result);
+    return ceil($result/3);
+}
+//нумерация страниц тегов
+function paginationCountTag($conn){
+    $sql = "SELECT post, tag FROM tag WHERE tag='".$_GET['tag']."'";
     $result = mysqli_query($conn, $sql);
     $result = mysqli_num_rows($result);
     return ceil($result/3);
@@ -61,9 +69,13 @@ function getAllTags($conn){
 }
 // выбор поста по тегу
 function getPostFromTag($conn){
-    $sql = "SELECT post FROM tag WHERE tag='".$_GET['tag']."'";
+    $offset = 0;
+    if (isset($_GET['offset']) AND trim($_GET['offset'])!=''){
+        $offset = trim($_GET['offset']);
+    }
+    $sql = "SELECT post FROM tag WHERE tag='".$_GET['tag']."' ORDER BY post DESC LIMIT 3 OFFSET ".$offset*3;
     $result = mysqli_query($conn, $sql);
-    
+
     $a = array();
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
@@ -79,8 +91,8 @@ function getPostFromTag($conn){
         while($row = mysqli_fetch_assoc($result)) {
             $a[] = $row;
         }
-    } 
-    return $a;
+    }
+    return array_reverse($a);
 }
 //закрытие
 function close($conn){

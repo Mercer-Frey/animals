@@ -18,6 +18,8 @@ $conn = connect();
 
 $sql = "DELETE FROM info WHERE id=".$id;
 $result = mysqli_query($conn, $sql);
+$sql = "DELETE FROM tag WHERE post=".$id;
+$result = mysqli_query($conn, $sql);
 if($result){
   $success .= 'Животное успешно удалено';
   $success .= '<br>';
@@ -34,4 +36,5 @@ if($result){
   echo $success;
 }
 close($conn);
+
 ?>

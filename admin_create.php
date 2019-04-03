@@ -33,6 +33,8 @@ if (isset($_POST['title']) AND $_POST['title'] !='') {
     }
     close($conn);
 }
+echo "<br><br><a href='/admin.php'><button>админка</button></a>";
+echo '<div><a href="/index.php"><button>Main Page</button></a></div>';
 
 ?>
 <!DOCTYPE html>
