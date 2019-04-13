@@ -94,6 +94,91 @@ function getPostFromTag($conn){
     }
     return array_reverse($a);
 }
+
+
+function selectArticle($conn){
+    $sql = "SELECT * FROM info WHERE id=".$_GET['id'];
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } 
+    return false;
+}
+
+function getArticleTags($conn){
+    $sql = "SELECT * FROM tag WHERE post=".$_GET['id'];
+    $result = mysqli_query($conn, $sql);
+    
+    $a = array();
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $a[] = $row;
+        }
+    } 
+    return $a;
+}
+
+// function getPostFromCategory($conn){
+//     $sql = "SELECT * FROM info WHERE category=".$_GET['id'];
+//     $result = mysqli_query($conn, $sql);
+    
+//     $a = array();
+//     if (mysqli_num_rows($result) > 0) {
+//         while($row = mysqli_fetch_assoc($result)) {
+//             $a[] = $row;
+//         }
+//     } 
+
+function getPostFromCategory($conn){
+    $offset = 0;
+    if (isset($_GET['offset']) AND trim($_GET['offset'])!=''){
+        $offset = trim($_GET['offset']);
+    }
+    $sql = "SELECT * FROM info WHERE category='".$_GET['id']."' ORDER BY category DESC LIMIT 3 OFFSET ".$offset*3;
+    $result = mysqli_query($conn, $sql);
+
+    $a = array();
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $a[] = $row;
+        }
+    } 
+    return array_reverse($a);
+}
+
+function getCatInfo($conn){
+    $sql = "SELECT * FROM category WHERE id=".$_GET['id'];
+    $result = mysqli_query($conn, $sql);
+    
+    $a = array();
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+    } 
+    return $row;
+}
+
+function getAllCatInfo($conn){
+    $sql = "SELECT * FROM category";
+    $result = mysqli_query($conn, $sql);
+    
+    $a = array();
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $a[] = $row;
+        }
+    } 
+    return $a;
+}
+
+function paginationCountCat($conn){
+    $sql =  "SELECT * FROM info WHERE category=".$_GET['id'];
+    $result = mysqli_query($conn, $sql);
+    $result = mysqli_num_rows($result);
+    return ceil($result/3);
+}
+
 //закрытие
 function close($conn){
     mysqli_close($conn);

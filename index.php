@@ -5,6 +5,7 @@ $conn = connect();
 $data = selectMain($conn); //первая тройка
 $countPage = paginationCount($conn); //колличество страниц
 $tag = getAllTags($conn); //все теги
+$cat = getAllCatInfo($conn);
 close($conn);
 ?>
 <!DOCTYPE html>
@@ -18,11 +19,17 @@ close($conn);
 <body>
 <?php
 $out = '';
+for ($i=0; $i < count($cat); $i++){
+    $out .='<p><a href="/category.php?id='.$cat[$i]['id'].'">'.$cat[$i]['description'].'</a></p>';
+}
+echo $out;
+echo '<hr>';
+$out = '';
 for ($i=0; $i < count($data); $i++){
     $out .="<img src='/images/{$data[$i]['image']}' width='100'>";
     $out .="<h2>{$data[$i]['title']}</h2>";
     $out .="<p>{$data[$i]['descr_min']}</p>";
-    $out .="<p><a href='/arcticle.php?id='{$data[$i]['id']}'>Read more...</a></p>";
+    $out .='<p><a href="/article.php?id='.$data[$i]['id'].'">Read more...</a></p>';
     $out .='<hr>';
 }
 echo $out;

@@ -2,13 +2,11 @@
 require_once 'core/config.php';
 require_once 'core/function.php';
 $conn = connect();
-$data = getPostFromTag($conn);
-$tag = getAllTags($conn); //возможные теги
-$countPageTag = paginationCountTag($conn); //колличество страниц
-$currentTag = $_GET['tag'];
+$data = getPostFromCategory($conn);
+$cat = getCatInfo($conn);
+$countPageCat = paginationCountCat($conn);
+$currentCat = $cat['id'];
 close($conn);
-// echo '<pre>';
-// var_dump($data);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,27 +18,25 @@ close($conn);
 </head>
 <body>
 <?php
+// var_dump($_GET['id']);
+echo "<h1>{$cat['category']}</h1>";
 $out = '';
 for ($i=0; $i < count($data); $i++){
     $out .="<img src='/images/{$data[$i]['image']}' width='100'>";
     $out .="<h2>{$data[$i]['title']}</h2>";
     $out .="<p>{$data[$i]['descr_min']}</p>";
     $out .='<p><a href="/article.php?id='.$data[$i]['id'].'">Read more...</a></p>';
-    $out .='<hr>';
+    $out.='<hr>';
 }
 echo $out;
+?>
+<hr>
+<?php
 
-
-for ($i=0; $i < $countPageTag; $i++){
+for ($i=0; $i < $countPageCat; $i++){
     $j = $i+1;
-    echo "<a href='/tag.php?tag={$currentTag}&offset={$i}' style='padding: 5px;'>{$j}</a>";
+    echo "<a href='/category.php?id={$currentCat}&offset={$i}' style='padding: 5px;'>{$j}</a>";
 }
-
-echo '<hr>';
-echo "<a href='/index.php'>все животные</a>";
-
-for ($i=0; $i < count($tag); $i++){
-    echo "<a href='/tag.php?tag={$tag[$i]}' style='padding: 5px;'>{$tag[$i]}</a>";
-}
-echo "<br><br><a href='/admin.php'><button>админка</button></a>";
+echo '<br>';
+echo $cat['description'];
 ?>
