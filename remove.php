@@ -9,20 +9,25 @@ $sql = "DELETE FROM info WHERE id=".$id;
 $result = mysqli_query($conn, $sql);
 $sql = "DELETE FROM tag WHERE post=".$id;
 $result = mysqli_query($conn, $sql);
-if($result){
-$success .= 'Животное успешно удалено';
-$success .= '<br>';
-$success .= 'вернуться в админ панель';
-}else{
-$success .= 'Произошла ошибка!!!!!!!!!!';
-$success .= '<br>';
-$success .= 'вернуться в админ панель';
-}
-echo $success;
-echo '<br>';
-echo "<a href='/admin.php'><button>админка</button></a>";
-close($conn);
 ?>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3 text-center">
+      <?php
+        if($result){
+          $success .= '<div class="alert alert-success" role="alert"><h4 class="alert-heading">Животное успешно удалено!</h4>';
+        }else{
+          $success .= '<div class="alert alert-danger" role="alert"><h4 class="alert-heading">Произошла ошибка!</h4>';
+        }
+        $success .= 'Вернуться в админ панель';
+        echo $success;
+        echo '<br><hr>';
+        echo "<a href='/admin.php'><button class='btn btn-danger mr-2'>Admin Panel</button></a></div>";
+        close($conn);
+      ?>
+    </div>
+  </div>
+</div>
 <?php
-require_once('template/footer.php');
+require_once('template/footer.php'); 
 ?>

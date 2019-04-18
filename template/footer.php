@@ -1,9 +1,9 @@
 <footer class="footer navbar-dark bg-dark mt-5">
-      <div class="container pt-5 pb-5">
-        <span class="text-muted">Place sticky footer content here.</span>
+      <div class="container pt-5 pb-5 text-center">
+        <span class="text-muted">Place sticky footer content here.</span> <br>
 
       	<a href="/index.php"><button class="btn btn-primary mr-2">Main Page</button></a>
-      	<a href='/admin.php'><button class="btn btn-danger mr-2">админка</button></a>
+      	<a href='/admin.php'><button class="btn btn-danger mr-2">Admin Panel</button></a>
       	<a href="/admin_create.php"><button class="btn btn-success">Add new</button></a>
       </div>
     </footer>

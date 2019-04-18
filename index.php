@@ -13,12 +13,13 @@ close($conn);
                 <?php
                 $out = '';
                 for ($i=0; $i < count($data); $i++){
+                $substrDescr = substr($data[$i]['descr_min'], 0, 111). ' ...';
                 $out .='<div class="col-lg-4 col-md-6">';
                     $out .='<div class="card">';
-                        $out .="<img src='/images/{$data[$i]['image']}' class='card-img-top'>";
+                        $out .="<img src='/images/{$data[$i]['image']}' class='card-img-top''>";
                         $out .='<div class="card-body">';
                             $out .="<h5 class='card-title'>{$data[$i]['title']}</h5>";
-                            $out .="<p class='card-text'>{$data[$i]['descr_min']}</p>";
+                            $out .="<p class='card-text'>{$substrDescr}</p>";
                             $out .='<p class="text-right"><a href="/article.php?id='.$data[$i]['id'].'" class="btn btn-primary">Read more...</a></p>';
                         $out .='</div>';
                     $out .='</div>';
@@ -29,15 +30,7 @@ close($conn);
             </div>
         </div>
         <div class="col-lg-3">
-            <?php
-            $out = '<div class="list-group">';
-                for ($i=0; $i < count($cat); $i++){
-                $out .='<a class="list-group-item list-group-item-action" href="/category.php?id='.$cat[$i]['id'].'">';
-                $out .= $cat[$i]['description'].'</a>';
-                }
-                echo $out;
-            echo '</div>';
-            ?>
+            <?php require_once('template/nav.php'); ?>
         </div>
     </div>
 </div>

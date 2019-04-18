@@ -19,10 +19,11 @@ $flash =  "New record created successfully";
             echo '<a href="/index.php"><button class="btn btn-primary mr-2">Main Page</button></a>';
 			echo '<a href="/admin_create.php"><button class="btn btn-success">Add new</button></a></div>';
 
-            $out = '<table  class="table table-striped">';
-            $out .='<tr><th>ID</th><th>Title</th><th>Description min</th><th>Image</th></tr>';
+            $out = '<table class="table table-striped">';
+            $out .='<tr><th>ID</th><th>Title</th><th>Description min</th><th>Image</th><th>Delete</th></tr>';
             for ($i=0; $i < count($data); $i++){
-            $out .="<tr><td>{$data[$i]['id']}</td><td>{$data[$i]['title']}</td><td>{$data[$i]['descr_min']}</td><td><img src='/images/{$data[$i]['image']}' width='40'></td><td><form action='/remove.php' method='post'><input type='hidden' name='del_id' value='{$data[$i]['id']}'><button type='submit' class='btn btn-danger' >удолить скотинку</button></form></td></tr>";
+            $substrDescr = substr($data[$i]['descr_min'], 0, 111). ' ...';
+            $out .="<tr><td>{$data[$i]['id']}</td><td>{$data[$i]['title']}</td><td>{$substrDescr}</td><td><img src='/images/{$data[$i]['image']}' width='60'></td><td><form action='/remove.php' method='post'><input type='hidden' name='del_id' value='{$data[$i]['id']}'><button type='submit' class='btn btn-danger' >удолить скотинку</button></form></td></tr>";
             }
             $out .='</table>';
             echo $out;
