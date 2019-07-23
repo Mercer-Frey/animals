@@ -1,13 +1,14 @@
+</div><!--content-->
 <footer class="footer navbar-dark bg-dark mt-5">
-      <div class="container pt-5 pb-5 text-center">
-        <span class="text-muted">Place sticky footer content here.</span> <br>
+      <div class="container pt-5 pb-5">
+        <span class="text-muted">Place sticky footer content here.</span>
 
-      	<a href="/index.php"><button class="btn btn-primary mr-2">Main Page</button></a>
-      	<a href='/admin.php'><button class="btn btn-danger mr-2">Admin Panel</button></a>
-      	<a href="/admin_create.php"><button class="btn btn-success">Add new</button></a>
+      	<a href="/"><button class="btn btn-primary mr-2">Main Page</button></a>
+      	<a href='/admin'><button class="btn btn-danger mr-2">админка</button></a>
+      	<a href="/admin-create"><button class="btn btn-success">Add new</button></a>
       </div>
     </footer>
-
+</div><!--wrap-->
  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

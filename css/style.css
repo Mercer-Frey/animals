@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+}
+.wrap::-webkit-scrollbar {
+    width: 5px;
+}
+
+.wrap::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.wrap::-webkit-scrollbar-thumb {
+    background-color: #099;
+    outline: 1px solid slategrey;
+    border-radius: 5px;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+.footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+.admin-tr > td{
+    vertical-align: middle;
+}
+.card-img-top{
+    width: 100%;
+    height: 200px;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.card-text{
+    height: 140px;
+}
