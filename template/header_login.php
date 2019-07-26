@@ -10,8 +10,9 @@ if (isset($_POST['password'])) {
         // Генерируем случайное число и шифруем его
         $hash = md5($func->GenerateCode(10));
         $time = time();
+        $ip = $_SERVER['REMOTE_ADDR'];
         // Записываем в БД новый хеш авторизации
-        mysqli_query($conn, "UPDATE users SET user_hash='" . $hash . "', time_last_online='".$time."'  WHERE id='" . $data['id'] . "'");
+        mysqli_query($conn, "UPDATE users SET user_hash='" . $hash . "', time_last_online='".$time."', ip='".$ip."'  WHERE id='" . $data['id'] . "'");
 
         // Ставим куки
         $user = ['id' => $data['id'], 'login' => $data['login'], 'email' => $data['email']];
