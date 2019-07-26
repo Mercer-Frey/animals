@@ -1,11 +1,24 @@
 </div><!--content-->
+<?php
+$conn3 = connect(); 
+$show_users_online = showUsersOnline($conn3);
+close($conn3);
+?>   
 <footer class="footer navbar-dark bg-dark mt-5">
       <div class="container pt-5 pb-5">
-        <span class="text-muted">Place sticky footer content here.</span>
-
-      	<a href="/"><button class="btn btn-primary mr-2">Main Page</button></a>
-      	<a href='/admin'><button class="btn btn-danger mr-2">админка</button></a>
-      	<a href="/admin-create"><button class="btn btn-success">Add new</button></a>
+        <div class="row">
+          <div class="col-lg-8">
+            <p class="users-online text-light">Пользователи сейчас на сайте:</p>
+            <div class="wrap-users-online">
+              <?php echo $show_users_online;?>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <a href="/"><button class="btn btn-primary mr-2">Main Page</button></a>
+            <a href='/admin' title="Для перехода в админ панель нужно зайти под ником 'Marc_Crass'"><button class="btn btn-danger mr-2">админка</button></a>
+            <a href="/admin-create" title="Что бы добавлять статьи нужно зайти под ником 'Marc_Crass'"><button class="btn btn-success">Add new</button></a>
+          </div>
+        </div>
       </div>
     </footer>
 </div><!--wrap-->

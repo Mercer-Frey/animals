@@ -180,8 +180,25 @@ function deleteArticle($conn,$id){
         return "Error deleting record: " . mysqli_error($conn);
     }
 }
+// выбираем пользователей онлайн и выводим в футер
+function showUsersOnline($conn3){
 
+    $time_footer = time() - 30;
+    $out_footer_online = '';
+    $result = mysqli_query($conn3, "SELECT id, login FROM users WHERE time_last_online > '" . $time_footer . "'");
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $out_footer_online .= "<a href='/profile/{$row['id']}' class='user-online text-success'>".$row['login']." </a>";
+        }
+    } 
+    return $out_footer_online;
+}
 
+function selectProfileData($conn){
+    $result = mysqli_query($conn, "SELECT id, login, email, FROM_UNIXTIME(time_sign_up), FROM_UNIXTIME(time_last_online), time_last_online, INET_NTOA(ip), sex FROM users WHERE id='" . $_GET['id'] . "'");
+    $profil_data = mysqli_fetch_assoc($result);
+    return $profil_data;
+}
 //закрытие
 function close($conn){
     mysqli_close($conn);

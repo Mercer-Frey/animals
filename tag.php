@@ -22,7 +22,7 @@ close($conn);
                 $out .='<div class="card-body">';
                 $out .="<h5 class='card-title'>{$data[$i]['title']}</h5>";
                 $out .="<p class='card-text'>{$data_short}</p>";
-                $out .='<p class="text-right"><a href="/arcticle.php?id='.$data[$i]['id'].'" class="btn btn-primary">Read more...</a></p>';
+                $out .='<p class="text-right"><a href="/arcticle/'.$data[$i]['id'].'" class="btn btn-primary">Read more...</a></p>';
                 $out .='</div>';
                 $out .='</div>';
                 $out .='</div>';

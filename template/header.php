@@ -1,3 +1,17 @@
+<?php 
+if(isset($_COOKIE['user']) AND $_COOKIE['user'] != ''){
+  $user_login = json_decode($_COOKIE['user']);
+  $time = time();
+  $status = '';
+
+  $conn2 = connect(); 
+  mysqli_query($conn2, "UPDATE users SET time_last_online='".$time."'  WHERE id='" . $user_login->{'id'} . "'");
+  $result = mysqli_query($conn2, "SELECT time_last_online FROM users WHERE id='" . $user_login->{'id'} . "'");
+  $user_last_time = mysqli_fetch_assoc($result);
+  close($conn2);
+  ($user_last_time['time_last_online'] < time() - 30 OR $user_last_time['time_last_online'] === '') ? $status = 'Offline' : $status = 'Online';
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,8 +42,8 @@
                   $user_login = json_decode($_COOKIE['user']);
               ?>
                   <li class="nav-item"> <a href="/logout" class="nav-link">Logout</a></li>
-                  <li class="nav-item active"> <a href="/" class="nav-link"><?php echo $user_login->{'login'}?> </a></li>
-                  <li class="nav-item"> <a href="/" class="nav-link disabled"> Online </a></li>
+                  <li class="nav-item active"> <a href="/profile/<?php echo $user_login->{'id'}?>" class="nav-link"><?php echo $user_login->{'login'}?></a></li>
+                  <li class="nav-item"> <a href="/" class="nav-link disabled"><?php echo $status?></a></li>
               <?php    
                 }
                 else{

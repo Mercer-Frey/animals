@@ -27,6 +27,9 @@ else if ($route == 'signup'){
 else if ($route == 'rules'){
     require_once 'rules.php';
 }
+else if ($route == '404'){
+    require_once '404.php';
+}
 else {
     $route = explode("/", $route);
     if ($route[0] == 'admin-update') {
@@ -44,6 +47,10 @@ else {
     else if ($route[0] == 'article'){
         $_GET['id'] = $route[1];
         require_once 'article.php';
+    }
+    else if ($route[0] == 'profile'){
+        $_GET['id'] = $route[1];
+        require_once 'profile.php';
     }
 }
 

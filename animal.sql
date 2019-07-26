@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 23 2019 г., 03:19
+-- Время создания: Июл 26 2019 г., 22:03
 -- Версия сервера: 5.6.41
 -- Версия PHP: 5.5.38
 
@@ -117,16 +117,17 @@ CREATE TABLE `users` (
   `user_hash` varchar(50) DEFAULT NULL,
   `time_sign_up` int(11) DEFAULT NULL,
   `time_last_online` int(11) DEFAULT NULL,
-  `ip` int(11) UNSIGNED DEFAULT NULL
+  `ip` int(11) UNSIGNED DEFAULT NULL,
+  `sex` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `email`, `password`, `user_hash`, `time_sign_up`, `time_last_online`, `ip`) VALUES
-(1, 'Marc_Crass', 'marc.Liciniy@crass', '827ccb0eea8a706c4c34a16891f84e7b', '07dd00dd7f56042b21a7e1bf9a46695a', 1563752488, 1563841024, 2130706433),
-(2, 'Yuliy_Caeser', 'dieIsCast@Rome', '827ccb0eea8a706c4c34a16891f84e7b', '851c364e96baa5a005b48d856bbe63a0', 1563752488, 1563816631, 2130706433);
+INSERT INTO `users` (`id`, `login`, `email`, `password`, `user_hash`, `time_sign_up`, `time_last_online`, `ip`, `sex`) VALUES
+(1, 'Marc_Crass', 'marc.Liciniy@crass', '827ccb0eea8a706c4c34a16891f84e7b', 'a1ec0617b9b45e168fc03a93b31d118b', 1563752488, 1564167780, 2130706433, 'male'),
+(2, 'Yuliy_Caeser', 'dieIsCast@Rome', '827ccb0eea8a706c4c34a16891f84e7b', '4d42832a387d9ae82d91546710b73a98', 1563752488, 1564164629, 2130706433, 'female');
 
 --
 -- Индексы сохранённых таблиц
@@ -182,7 +183,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

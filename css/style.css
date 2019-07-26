@@ -44,3 +44,20 @@ html, body {
 .card-text{
     height: 140px;
 }
+
+.profile-photo{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile-photo img{
+    width: 100%;
+}
+.profile-data{
+    text-align: left;
+}
+.profile-value{
+    text-align: right;
+}
